@@ -1,0 +1,6 @@
+applicationType: default
+defaultPackage: tech.garymyers.ecommerce
+testFramework: spock
+sourceLanguage: kotlin
+buildTool: gradle
+features: [annotation-api, app-name, cache-caffeine, data, data-jdbc, graalvm, gradle, http-client, jackson-databind, jdbc-hikari, kotlin, kotlin-application, kotlin-build, kotlin-extension-functions, logback, micronaut-build, netty-server, postgres, properties, readme, security, security-annotations, security-jwt, shade, spock, testcontainers]
