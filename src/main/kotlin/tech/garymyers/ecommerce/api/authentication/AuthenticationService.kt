@@ -15,7 +15,7 @@ class AuthenticationService {
                SuccessAuthenticationStatus(
                   ServerAuthentication(
                      usernamePasswordCredentials.username,
-                     listOf("ROLE_HELLO"),
+                     listOf("HELLO"),
                      emptyMap(),
                   )
                )

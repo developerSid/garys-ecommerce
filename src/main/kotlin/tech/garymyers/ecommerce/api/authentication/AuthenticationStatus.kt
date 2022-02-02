@@ -9,5 +9,5 @@ data class SuccessAuthenticationStatus(
 ) : AuthenticationStatus
 
 class FailedAuthenticationStatus(
-   val failureReason: String,
+   val reason: String,
 ) : AuthenticationStatus

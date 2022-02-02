@@ -39,10 +39,22 @@ dependencies {
 
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
 
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.6.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.6.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactive:1.6.0")
+
     testImplementation("io.micronaut.test:micronaut-test-junit5")
     testImplementation("org.codehaus.groovy:groovy-json")
 }
 
+allOpen {
+    annotation("io.micronaut.aop.Around")
+    annotation("io.micronaut.security.annotation.Secured")
+    annotation("jakarta.inject.Inject")
+    annotation("io.micronaut.http.annotation.Controller")
+    annotation("javax.transaction.Transactional")
+}
 
 application {
     mainClass.set("tech.garymyers.ecommerce.ApplicationKt")
