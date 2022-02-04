@@ -1,4 +1,4 @@
-package tech.garymyers.ecommerce.helloworld.infrastructure
+package tech.garymyers.ecommerce.api.helloworld.infrastructure
 
 
 import io.micronaut.test.extensions.spock.annotation.MicronautTest
