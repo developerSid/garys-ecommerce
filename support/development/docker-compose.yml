@@ -1,0 +1,32 @@
+version: '3.8'
+networks:
+  skynet:
+    name: skynet
+
+services:
+  ecombasedb:
+    image: ecombasedb
+    build:
+      context: ecombasedb
+      dockerfile: ecombasedb.dockerfile
+
+
+  ecomtestdb:
+    image: ecomtestdb
+    build:
+      context: ecomtestdb
+      dockerfile: ecomtestdb.dockerfile
+    networks:
+      - skynet
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: "10m"
+    ports:
+      - "7432:5432"
+    tmpfs: /var/lib/postgresql/data:rw
+    environment:
+      - POSTGRES_DB=ecomtestdb
+      - POSTGRES_PASSWORD=password
+    restart: 'no'
