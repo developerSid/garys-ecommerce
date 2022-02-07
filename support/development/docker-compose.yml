@@ -10,9 +10,28 @@ services:
       context: ecombasedb
       dockerfile: ecombasedb.dockerfile
 
+  ecomdevdb:
+    container_name: ecomdevdb
+    networks:
+      - skynet
+    build:
+      context: ecomdevdb
+      dockerfile: ecomdevdb.dockerfile
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: "10m"
+    ports:
+      - "6432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=postgres
+    restart: 'no'
 
   ecomtestdb:
-    image: ecomtestdb
+    container_name: ecomtestdb
     build:
       context: ecomtestdb
       dockerfile: ecomtestdb.dockerfile
