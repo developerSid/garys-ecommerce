@@ -1,2 +1,3 @@
-
 rootProject.name="garys-ecommerce"
+
+include "dbmigrator", "ecom-api"

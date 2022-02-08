@@ -1,0 +1,11 @@
+**/*/build
+**/*/test
+.idea
+support
+!support/development/dbmigrator/*.sh
+.run
+build
+.git
+.envrc
+.gradle
+

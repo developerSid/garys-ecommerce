@@ -2,6 +2,8 @@ version: '3.8'
 networks:
   skynet:
     name: skynet
+volumes:
+  gradleCache:
 
 services:
   ecombasedb:
@@ -29,6 +31,23 @@ services:
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=postgres
     restart: 'no'
+  ecomdevdbmigrate:
+    container_name: ecomdevdbmigrate
+    depends_on:
+      - ecomdevdb
+    networks:
+      - skynet
+    build:
+      context: ../../
+      dockerfile: support/development/dbmigrator/dbmigrator.dockerfile
+    volumes:
+      - gradleCache:/home/jenkins/.gradle
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: "10m"
+    entrypoint: [ "/tmp/migrate-development.sh" ]
 
   ecomtestdb:
     container_name: ecomtestdb

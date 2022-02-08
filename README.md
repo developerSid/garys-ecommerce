@@ -61,6 +61,11 @@ docker-compose up -d ecomtestdb
 
 ### Useful docker/docker-compose commands
 
+To stop it all
+```shell
+docker-compose down
+```
+
 To tail the logs
 ```shell
 docker-compose logs -f --tail 100
