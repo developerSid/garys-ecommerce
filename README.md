@@ -49,6 +49,8 @@ To start:
 docker-compose build ecombasedb
 docker-compose build ecomdevdb
 docker-compose up -d ecomdevdb
+docker-compose build ecomdevdbmigrate
+docker-compose run ecomdevdbmigrate
 ```
 
 ### Use the test database
