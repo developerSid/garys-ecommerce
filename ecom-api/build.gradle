@@ -43,6 +43,9 @@ dependencies {
 
     testImplementation("io.micronaut.test:micronaut-test-junit5")
     testImplementation("org.codehaus.groovy:groovy-json")
+    testImplementation("io.micronaut.flyway:micronaut-flyway")
+
+    testApi project(path: ":dbmigrator")
 }
 
 allOpen {
