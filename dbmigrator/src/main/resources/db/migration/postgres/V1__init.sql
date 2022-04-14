@@ -50,6 +50,6 @@ CREATE OR REPLACE FUNCTION password_matches(TEXT, TEXT) -- $1 password, $2 bcryp
     RETURNS BOOLEAN AS
 $$
 BEGIN
-    RETURN crypt($1, $2) = $1;
+    RETURN crypt($1, $2) = $2;
 END;
 $$ LANGUAGE plpgsql;

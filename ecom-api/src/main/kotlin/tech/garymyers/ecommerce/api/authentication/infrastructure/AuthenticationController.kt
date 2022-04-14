@@ -32,12 +32,12 @@ class AuthenticationController @Inject constructor(
    private val loginHandler: LoginHandler,
 ) {
 
-   @Post(processes = [MediaType.APPLICATION_JSON])
+   @Post("/admin", processes = [MediaType.APPLICATION_JSON])
    suspend fun login(
       @Valid @Body usernamePasswordCredentials: UsernamePasswordCredentials,
       request: HttpRequest<*>,
    ): HttpResponse<*> {
-      return when(val authentication = authenticationService.authenticateMe(usernamePasswordCredentials)) {
+      return when(val authentication = authenticationService.authenticateAdmin(usernamePasswordCredentials)) {
          is SuccessAuthenticationStatus -> {
             eventPublisher.publishEvent(LoginSuccessfulEvent(authentication.authentication.name))
 

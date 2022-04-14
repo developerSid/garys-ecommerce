@@ -3,9 +3,11 @@ package tech.garymyers.ecommerce.api.administrator
 import com.github.javafaker.Faker
 import jakarta.inject.Inject
 import jakarta.inject.Singleton
+import kotlinx.coroutines.runBlocking
 import tech.garymyers.ecommerce.api.administrator.infrastructure.AdministratorRepository
 import java.util.stream.IntStream
 import java.util.stream.Stream
+import kotlin.streams.asSequence
 
 object AdministratorTestDataLoader {
 
@@ -30,8 +32,14 @@ class AdministratorTestDataLoaderService @Inject constructor(
    private val administratorRepository: AdministratorRepository
 ) {
    fun stream(numberIn: Int = 1): Stream<AdministratorEntity> {
-      TODO("Finish me on Tuesday")
-//      return AdministratorTestDataLoader.stream(numberIn)
-//         .map { administratorRepository.saveWithHashed(it) }
+      return runBlocking {
+         val toReturn = mutableListOf<AdministratorEntity>()
+
+         AdministratorTestDataLoader.stream(numberIn).asSequence().forEach {
+            toReturn.add(administratorRepository.save(it).copy(password = it.password))
+         }
+
+         toReturn.stream()
+      }
    }
 }

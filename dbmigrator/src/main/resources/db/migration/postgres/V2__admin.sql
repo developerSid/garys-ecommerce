@@ -3,8 +3,9 @@ CREATE TABLE administrator
     id           UUID                                              NOT NULL DEFAULT uuid_generate_v1() PRIMARY KEY,
     time_created TIMESTAMPTZ DEFAULT CLOCK_TIMESTAMP()             NOT NULL,
     time_updated TIMESTAMPTZ DEFAULT CLOCK_TIMESTAMP()             NOT NULL,
-    username     VARCHAR(50) CHECK ( CHAR_LENGTH(username) > 3 )   NOT NULL,
+    username     VARCHAR(50) CHECK ( CHAR_LENGTH(username) > 3 )   NOT NULL, -- TODO make unique, based on enabled flag
     password     VARCHAR(100) CHECK ( CHAR_LENGTH(password) > 10 ) NOT NULL
+    -- TODO add enabled flag,
 );
 
 CREATE TRIGGER update_audit_exception_note_trg
