@@ -7,6 +7,7 @@ import kotlinx.coroutines.runBlocking
 import tech.garymyers.ecommerce.api.administrator.infrastructure.AdministratorRepository
 import java.util.stream.IntStream
 import java.util.stream.Stream
+import javax.transaction.Transactional
 import kotlin.streams.asSequence
 
 object AdministratorTestDataLoader {
@@ -28,15 +29,16 @@ object AdministratorTestDataLoader {
 }
 
 @Singleton
-class AdministratorTestDataLoaderService @Inject constructor(
+open class AdministratorTestDataLoaderService @Inject constructor(
    private val administratorRepository: AdministratorRepository
 ) {
-   fun stream(numberIn: Int = 1): Stream<AdministratorEntity> {
+   @Transactional
+   open fun stream(numberIn: Int = 1): Stream<AdministratorEntity> {
       return runBlocking {
          val toReturn = mutableListOf<AdministratorEntity>()
 
          AdministratorTestDataLoader.stream(numberIn).asSequence().forEach {
-            toReturn.add(administratorRepository.save(it).copy(password = it.password))
+            toReturn.add(administratorRepository.saveAdmin(it).copy(password = it.password))
          }
 
          toReturn.stream()
